@@ -17,7 +17,6 @@ class EditProfileScreen extends StatelessWidget {
         init: EditProfileController(),
         builder: (controller) {
           return Scaffold(
-            backgroundColor: Colors.white,
             appBar: AppBar(
               elevation: 0.0,
               backgroundColor: Colors.white,
@@ -78,9 +77,13 @@ class EditProfileScreen extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: 15),
-                            CustomText(
-                              text: controller.userModel!.name,
-                              fontSize: 22,
+                            Container(
+                              width: Get.width,
+                              alignment: Alignment.center,
+                              child: CustomText(
+                                text: controller.userModel!.name,
+                                fontSize: 22,
+                              ),
                             ),
                             SizedBox(height: 30),
                             CustomTextFormField(

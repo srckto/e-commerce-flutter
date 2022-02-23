@@ -1,6 +1,7 @@
 import 'package:e_commerce/controllers/account/account_controller.dart';
 import 'package:e_commerce/controllers/account/add_product_controller.dart';
 import 'package:e_commerce/controllers/account/edit_profile_controller.dart';
+import 'package:e_commerce/controllers/account/order_history_controller.dart';
 import 'package:e_commerce/controllers/account/user_products_controller.dart';
 import 'package:e_commerce/controllers/auth/login_controller.dart';
 import 'package:e_commerce/controllers/auth/register_controller.dart';
@@ -25,5 +26,6 @@ class Binding extends Bindings {
     Get.lazyPut(() => EditProfileController());
     Get.lazyPut(() => UserProductsController());
     Get.lazyPut(() => AddProductController());
+    Get.lazyPut(() => OrderHistoryController());
   }
 }

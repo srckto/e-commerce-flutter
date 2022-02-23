@@ -1,5 +1,6 @@
 import 'package:e_commerce/controllers/account/account_controller.dart';
 import 'package:e_commerce/screens/account/screens/edit_profile_screen.dart';
+import 'package:e_commerce/screens/account/screens/order_history_screen.dart';
 import 'package:e_commerce/screens/account/screens/user_product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -74,7 +75,7 @@ class AccountScreen extends GetWidget<AccountController> {
                           SizedBox(height: 15),
                           _buildItem(
                             imagePath: 'assets/images/Icon_History.png',
-                            onTap: () {},
+                            onTap: () => Get.to(() => OrderHistoryScreen()),
                             title: 'Order History',
                             icon: Icons.arrow_forward_ios_sharp,
                           ),

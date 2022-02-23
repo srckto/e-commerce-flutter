@@ -59,10 +59,7 @@ class AddProductController extends GetxController {
     isLoading = true;
     update();
 
-    print("//////////////////////////////////////");
-    print("Begin upload");
-    print("//////////////////////////////////////");
-
+    
     String imageUrl = await ProductService.instance.uploadImageToFireStorage(imageFile!);
 
     ProductModel model = ProductModel(

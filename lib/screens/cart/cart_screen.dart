@@ -2,6 +2,7 @@ import 'package:e_commerce/controllers/cart/cart_controller.dart';
 import 'package:e_commerce/screens/cart/widgets/build_cart_item.dart';
 import 'package:e_commerce/screens/check_out/check_out_screen.dart';
 import 'package:e_commerce/screens/widgets/custom_button.dart';
+import 'package:e_commerce/screens/widgets/empty_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -14,19 +15,7 @@ class CartScreen extends GetWidget<CartController> {
     return GetBuilder<CartController>(
       init: CartController(),
       builder: (_) => controller.allCarts.isEmpty
-          ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    "assets/images/empty_cart_co35.svg",
-                    width: Get.width * 0.8,
-                  ),
-                  SizedBox(height: 15),
-                  Text("Cart is empty"),
-                ],
-              ),
-            )
+          ? EmptyScreen(message: "Cart is empty")
           : Container(
               width: Get.width,
               height: Get.height,

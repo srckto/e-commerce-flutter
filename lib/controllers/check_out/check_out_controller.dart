@@ -1,4 +1,9 @@
+import 'package:e_commerce/constant.dart';
+import 'package:e_commerce/controllers/cart/cart_controller.dart';
+import 'package:e_commerce/helper/cart_database_helper.dart';
 import 'package:e_commerce/helper/enum.dart';
+import 'package:e_commerce/models/order_model.dart';
+import 'package:e_commerce/services/order_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +17,8 @@ class CheckOutController extends GetxController {
   String? city = "";
   String? state = "";
   String? country = "";
+
+  bool isLoading = false;
 
   String? get address {
     return street1! + "," + street2! + "," + city! + "," + state! + "," + country!;
@@ -28,15 +35,34 @@ class CheckOutController extends GetxController {
     return formKey.currentState!.validate();
   }
 
+  String getDelivery() {
+    if (delivery == Delivery.NextDayDelivery) return "Next Day Delivery";
+    if (delivery == Delivery.StandardDelivery) return "Standard Delivery";
+    if (delivery == Delivery.NominatedDelivery) return "Nominated Delivery";
+    return "";
+  }
+
   void onChangeRadioButton(Delivery? value) {
     _delivery = value!;
     update();
   }
 
+  Future<void> addOrderToFirebase() async {
+    CartController cartController = Get.find<CartController>();
+
+    OrderModel orderModel = OrderModel(
+      totalPrice: cartController.totalPrice,
+      dateTime: DateTime.now().toString(),
+      Carts: cartController.allCarts,
+      deliveryTime: getDelivery(),
+    );
+    await OrderService.instance.addOrder(orderModel);
+  }
+
   Pages _pages = Pages.DeliveryTime;
   Pages get pages => _pages;
 
-  void nextScreen() {
+  void nextScreen() async {
     _index++;
     if (_index == 0)
       _pages = Pages.DeliveryTime;
@@ -48,8 +74,10 @@ class CheckOutController extends GetxController {
       } else
         _pages = Pages.Summary;
     } else {
+      await addOrderToFirebase();
+      await CartDatabaseHelper.instance.deleteTable(k_tableCart);
+      Get.find<CartController>().onInit();
       Get.back();
-      _index = 1;
     }
     update();
   }

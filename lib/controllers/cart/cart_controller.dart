@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class CartController extends GetxController {
   @override
   onInit() async {
+    _allCarts = [];
     super.onInit();
     await getAllProduct();
     await getTotalPrice();
@@ -14,10 +15,10 @@ class CartController extends GetxController {
   List<CartModel> _allCarts = [];
   List<CartModel> get allCarts => _allCarts;
 
-  int _totalPrice = 0;
-  int get totalPrice => _totalPrice;
+  double _totalPrice = 0;
+  double get totalPrice => _totalPrice;
 
-  void addProduct(CartModel model) async {
+  Future<void> addProduct(CartModel model) async {
     for (int i = 0; i != _allCarts.length; i++) {
       if (_allCarts[i].id == model.id) return;
     }
@@ -26,6 +27,14 @@ class CartController extends GetxController {
     await getAllProduct();
     await getTotalPrice();
     update();
+  }
+
+  Future<void> removeProduct(CartModel model) async {
+    CartDatabaseHelper.instance.delete(model);
+    await getAllProduct();
+    await getTotalPrice();
+    update();
+    print("Complete");
   }
 
   Future<void> getAllProduct() async {
