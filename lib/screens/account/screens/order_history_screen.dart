@@ -40,7 +40,7 @@ class OrderHistoryScreen extends StatelessWidget {
                   if (controller.orders.isEmpty) return EmptyScreen(message: "Empty");
                   return ListView.separated(
                     physics: BouncingScrollPhysics(),
-                    shrinkWrap: true,
+                    reverse: true,
                     clipBehavior: Clip.none,
                     itemCount: controller.orders.length,
                     separatorBuilder: (BuildContext context, int index) {
