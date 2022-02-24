@@ -34,7 +34,6 @@ class CartController extends GetxController {
     await getAllProduct();
     await getTotalPrice();
     update();
-    print("Complete");
   }
 
   Future<void> getAllProduct() async {

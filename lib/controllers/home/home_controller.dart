@@ -26,6 +26,7 @@ class HomeController extends GetxController {
   Future<void> getCategoryItems() async {
     await ProductService.instance.getCategories().then((value) {
       if (value == null) return;
+      _categoryModels = [];
       value.forEach((element) {
         _categoryModels.add(CategoryModel.fromJson(element.data()));
       });
@@ -34,10 +35,12 @@ class HomeController extends GetxController {
 
   Future<void> getProductItems() async {
     await ProductService.instance.getProducts().then((value) {
+      _productsModels = [];
       if (value == null) return;
       value.forEach((element) {
         _productsModels.add(ProductModel.fromJson(element.data()));
       });
     });
+    update();
   }
 }

@@ -110,9 +110,33 @@ class _buildItem extends StatelessWidget {
                             maxLine: 1,
                           ),
                           SizedBox(height: 10),
-                          CustomText(
-                            text: "\$" + orderModel.Carts![index].price!.toString(),
-                            color: k_primary,
+                          Row(
+                            children: [
+                              CustomText(
+                                text: "\$" + orderModel.Carts![index].price!.toString(),
+                                color: k_primary,
+                              ),
+                              SizedBox(width: 5),
+                              CustomText(
+                                text: "x" + orderModel.Carts![index].quantity!.toString(),
+                                color: k_fontGrey,
+                                fontSize: 12,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              CustomText(
+                                text: "Total :",
+                              ),
+                              SizedBox(width: 5),
+                              CustomText(
+                                text: "\$" +
+                                    "${orderModel.Carts![index].price! * orderModel.Carts![index].quantity!}",
+                                color: k_primary,
+                              ),
+                            ],
                           ),
                         ],
                       ),

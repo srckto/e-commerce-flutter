@@ -13,56 +13,58 @@ class DeliveryTime extends StatelessWidget {
       child: GetBuilder<CheckOutController>(
           init: CheckOutController(),
           builder: (controller) {
-            return Column(
-              children: [
-                SizedBox(height: 30),
-                RadioListTile<Delivery>(
-                  activeColor: k_primary,
-                  title: CustomText(
-                    text: "Standard Delivery",
-                    fontWeight: FontWeight.bold,
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: 30),
+                  RadioListTile<Delivery>(
+                    activeColor: k_primary,
+                    title: CustomText(
+                      text: "Standard Delivery",
+                      fontWeight: FontWeight.bold,
+                    ),
+                    subtitle: CustomText(
+                      text: "Order will be delivered between 3 - 5 business days",
+                      fontSize: 15,
+                    ),
+                    value: Delivery.StandardDelivery,
+                    groupValue: controller.delivery,
+                    onChanged: controller.onChangeRadioButton,
                   ),
-                  subtitle: CustomText(
-                    text: "Order will be delivered between 3 - 5 business days",
-                    fontSize: 15,
+                  SizedBox(height: 20),
+                  RadioListTile<Delivery>(
+                    activeColor: k_primary,
+                    title: CustomText(
+                      text: "Next Day Delivery",
+                      fontWeight: FontWeight.bold,
+                    ),
+                    subtitle: CustomText(
+                      text:
+                          "Place your order before 6pm and your items will be delivered the next day",
+                      fontSize: 15,
+                    ),
+                    value: Delivery.NextDayDelivery,
+                    groupValue: controller.delivery,
+                    onChanged: controller.onChangeRadioButton,
                   ),
-                  value: Delivery.StandardDelivery,
-                  groupValue: controller.delivery,
-                  onChanged: controller.onChangeRadioButton,
-                ),
-                SizedBox(height: 20),
-                RadioListTile<Delivery>(
-                  activeColor: k_primary,
-                  title: CustomText(
-                    text: "Next Day Delivery",
-                    fontWeight: FontWeight.bold,
+                  SizedBox(height: 20),
+                  RadioListTile<Delivery>(
+                    activeColor: k_primary,
+                    title: CustomText(
+                      text: "Nominated Delivery",
+                      fontWeight: FontWeight.bold,
+                    ),
+                    subtitle: CustomText(
+                      text:
+                          "Pick a particular date from the calendar and order will be delivered on selected date",
+                      fontSize: 15,
+                    ),
+                    value: Delivery.NominatedDelivery,
+                    groupValue: controller.delivery,
+                    onChanged: controller.onChangeRadioButton,
                   ),
-                  subtitle: CustomText(
-                    text:
-                        "Place your order before 6pm and your items will be delivered the next day",
-                    fontSize: 15,
-                  ),
-                  value: Delivery.NextDayDelivery,
-                  groupValue: controller.delivery,
-                  onChanged: controller.onChangeRadioButton,
-                ),
-                SizedBox(height: 20),
-                RadioListTile<Delivery>(
-                  activeColor: k_primary,
-                  title: CustomText(
-                    text: "Nominated Delivery",
-                    fontWeight: FontWeight.bold,
-                  ),
-                  subtitle: CustomText(
-                    text:
-                        "Pick a particular date from the calendar and order will be delivered on selected date",
-                    fontSize: 15,
-                  ),
-                  value: Delivery.NominatedDelivery,
-                  groupValue: controller.delivery,
-                  onChanged: controller.onChangeRadioButton,
-                ),
-              ],
+                ],
+              ),
             );
           }),
     );
