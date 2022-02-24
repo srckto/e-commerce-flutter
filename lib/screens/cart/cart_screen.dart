@@ -4,7 +4,6 @@ import 'package:e_commerce/screens/check_out/check_out_screen.dart';
 import 'package:e_commerce/screens/widgets/custom_button.dart';
 import 'package:e_commerce/screens/widgets/empty_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class CartScreen extends GetWidget<CartController> {
