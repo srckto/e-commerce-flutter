@@ -33,7 +33,7 @@ class RegisterController extends GetxController {
         picture:
             'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png',
         uid: userCredential.user!.uid,
-        isPublisher: false,
+        isPublisher: true,
         phone: phoneNumber!,
       );
 
